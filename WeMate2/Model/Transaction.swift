@@ -1,9 +1,9 @@
 //
 //  Group.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2017-12-04.
-//  Copyright © 2017 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import Foundation
@@ -21,10 +21,17 @@ class Transaction {
     
     var groupTitle: String {
         return _groupTitle
+        
     }
+    
+    
+    
+    
     
     var key: String {
         return _key
+        
+        
     }
     
     var payees: [String] {
@@ -41,11 +48,16 @@ class Transaction {
     
     var description: String {
         return _description
+        
     }
     
     var settled: [String] {
         return _settled
     }
+    
+    
+    
+    
     
     var amount: Float {
         return _amount
@@ -62,6 +74,8 @@ class Transaction {
         self._payer = payer
         self._date = date
         self._description = description
+        
+        
         self._settled = settled
         self._amount = amount
         self._groupKey = groupKey

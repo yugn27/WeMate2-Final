@@ -1,10 +1,11 @@
 //
 //  StringExt.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2017-12-09.
-//  Copyright © 2017 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
+
 import Foundation
 
 extension String {
@@ -14,12 +15,13 @@ extension String {
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
-        formatter.currencySymbol = Locale.current.currencySymbol
+        //var amountsym = "Rupee";
+        formatter.currencySymbol = "₹"
         formatter.numberStyle = .currencyAccounting
         
         var amountWithPrefix = self
         
-        // remove from String: "$", ".", ","
+       
         let regex = try! NSRegularExpression(pattern: "[^0-9]", options: .caseInsensitive)
         amountWithPrefix = regex.stringByReplacingMatches(in: amountWithPrefix, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, self.characters.count), withTemplate: "")
         

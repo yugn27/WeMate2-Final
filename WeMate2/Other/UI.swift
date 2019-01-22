@@ -1,9 +1,9 @@
 //
 //  UI.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2018-06-18.
-//  Copyright © 2018 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import Foundation
@@ -20,6 +20,11 @@ enum UI {
         static let white = UIColor("#FFFFFF")
         static let rosePink = UIColor("#f88285")
         static let peachyPink = UIColor("#ff9c86")
+        static let grdOrange = UIColor("#F39C4C")
+        static let grdOrange2 = UIColor("#EE7530")
+        // yash test
+        
+        
     }
     
     struct Font {

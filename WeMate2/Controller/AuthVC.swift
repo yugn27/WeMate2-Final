@@ -1,9 +1,9 @@
 //
 //  AuthVC.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2017-11-25.
-//  Copyright © 2017 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import UIKit
@@ -27,12 +27,12 @@ class AuthVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.shared.statusBarStyle = .lightContent
-        //errorLbl.isHidden = true
+        
         
         view.addSubview(gradientView)
         gradientView <- [Edges()]
-        gradientView.topColor = UI.Colours.rosePink
-        gradientView.bottomColor = UI.Colours.peachyPink
+        gradientView.topColor = UI.Colours.grdOrange
+        gradientView.bottomColor = UI.Colours.grdOrange2
         
         setupLogo()
         setupSubtitle()
@@ -40,23 +40,33 @@ class AuthVC: UIViewController {
         setupPasswordTextField()
         setupLoginButton()
         setupSignUpButton()
-        setupForgotPasswordButton()
+        
+        
+        
+        // keyboard fix
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        
     }
+    
+    
+    
+    
     
     func setupLogo() {
         view.addSubview(logoImageView)
-        //logoImageView.frame = CGRect(x: 50, y: 50, width: 106, height: 31)
-        logoImageView.image = UIImage(named: "logo")
+        
         logoImageView.contentMode = .scaleAspectFill
         logoImageView <- [
             Top(50),
             CenterX()
         ]
     }
+ 
+
     
     func setupSubtitle() {
         view.addSubview(subtitleLabel)
-        subtitleLabel.text = "Splitting money\nthe easy way"
+        subtitleLabel.text = "WeMate"
         subtitleLabel.font = UI.Font.regular(22)
         subtitleLabel.textColor = UI.Colours.white
         subtitleLabel.numberOfLines = 0
@@ -66,30 +76,30 @@ class AuthVC: UIViewController {
     
     func setupEmailTextField() {
         view.addSubview(emailTextField)
-        let data = TextFieldEntryData(title: "Email address", placeholder: "hello@divide.com")
+        let data = TextFieldEntryData(title: "Email address", placeholder: "")
         emailTextField.configure(data)
         emailTextField.tintColor = UI.Colours.white
 
-//        let emailImageView = UIImageView(image: UIImage(named: "email"))
-//        emailImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-//        emailTextField.leftViewMode = .always
-//        emailTextField.leftView = emailImageView
         emailTextField <- [
             Top(200),
-            Height(30),
+            Height(60),
             Left(30),
             Right(30)
         ]
+        
+        
+        
+        
     }
     
     func setupPasswordTextField() {
         view.addSubview(passwordTextField)
-        let data = TextFieldEntryData(title: "Password", placeholder: "********")
+        let data = TextFieldEntryData(title: "Email address", placeholder: "user@mail.com")
         emailTextField.configure(data)
         emailTextField.tintColor = UI.Colours.white
         passwordTextField <- [
             Top(25).to(emailTextField),
-            Height(30),
+            Height(60),
             Left(30),
             Right(30)
         ]
@@ -111,16 +121,7 @@ class AuthVC: UIViewController {
         ]
     }
     
-    func setupForgotPasswordButton() {
-        view.addSubview(forgotPasswordButton)
-        forgotPasswordButton.titleLabel?.textColor = UI.Colours.lightGrey
-        forgotPasswordButton.titleLabel?.font = UI.Font.regular(15)
-        forgotPasswordButton.setTitle("Forgot password?", for: .normal)
-        forgotPasswordButton <- [
-            Top(8).to(loginButton),
-            CenterX()
-        ]
-    }
+    
     
     func setupSignUpButton() {
         view.addSubview(signUpButton)
@@ -136,32 +137,85 @@ class AuthVC: UIViewController {
     }
 
     @objc func loginPressed(_ sender: Any) {
-        let homeVC = HomeVC()
-        //let tabBar = storyboard?.instantiateViewController(withIdentifier: "MainTabBar")
+      
+        let tabBar = storyboard?.instantiateViewController(withIdentifier: "TestloginfViewController")
+       
         if emailTextField.textField.text != "" && passwordTextField.textField.text != "" {
             AuthService.instance.loginUser(withEmail: emailTextField.textField.text!, andPassword: passwordTextField.textField.text!, loginComplete: { (success, loginError) in
                 if success {
-                    self.presentDetail(homeVC)
-                    UIApplication.shared.statusBarStyle = .lightContent
+                    print("Login Sucessfull")
+                    
+                    //self.presentDetail(tabBar!)
+                    //UIApplication.shared.statusBarStyle = .lightContent
+                    
+                    self.showMessageResetApp()
+                
+                  //  self.navigationController?.pushViewController(tabBar!, animated: true)
+                  
+                    //self.performSegue(withIdentifier: "MainTabBar", sender: nil)
+                    // self.present(tabBar!, animated: true, completion: nil)
+                   // let vc = ViewController()
+                   // self.present(vc, animated: true, completion: nil)
+                    
+                    
                 } else {
                     if let error = loginError?.localizedDescription {
                         print(error)
-                        //self.errorLbl.isHidden = false
-//                        if error == "The password must be 6 characters long or more." {
-//                            self.errorLbl.text = error
-//                        } else if error == "The email address is badly formatted." {
-//                            self.errorLbl.text = "Please enter a valid email address."
-//                        } else if error == "The email address is already in use by another account." {
-//                            self.errorLbl.text = "This user already has a divide account. Please log in."
-//                        } else if error == "There is no user record corresponding to this identifier. The user may have been deleted." {
-//                            self.errorLbl.text = "Please press the Sign Up button to create an account first."
-//                        } else if error == "The password is invalid or the user does not have a password." {
-//                            self.errorLbl.text = "Incorrect password."
-//                        }
+                       
                     }
                 }
             })
         }
+    }
+    
+    
+    
+    
+    func restartApplication () {
+        let viewController = HomeVC()
+        let navCtrl = UINavigationController(rootViewController: viewController)
+        
+        guard
+            let window = UIApplication.shared.keyWindow,
+            let rootViewController = window.rootViewController
+            else {
+                return
+        }
+        
+        navCtrl.view.frame = rootViewController.view.frame
+        navCtrl.view.layoutIfNeeded()
+        
+        UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            window.rootViewController = navCtrl
+        })
+        
+    }
+    
+    
+    func showMessageResetApp(){
+        let exitAppAlert = UIAlertController(title: "LogIn",
+                                             message: "Login Successfully",
+                                             preferredStyle: .alert)
+        
+        let resetApp = UIAlertAction(title: "Exit", style: .destructive) {
+            (alert) -> Void in
+            // home button pressed programmatically - to thorw app to background
+            UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
+            // terminaing app in background
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                exit(EXIT_SUCCESS)
+            })
+        }
+        
+        let laterAction = UIAlertAction(title: "Done", style: .cancel) {
+            (alert) -> Void in
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        exitAppAlert.addAction(resetApp)
+        exitAppAlert.addAction(laterAction)
+        present(exitAppAlert, animated: true, completion: nil)
+        
     }
     
     @objc func signUpPressed(_ sender: Any) {

@@ -1,9 +1,9 @@
 //
 //  HomeVC.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2017-11-26.
-//  Copyright © 2017 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import UIKit
@@ -80,23 +80,17 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
-         do {
-         try Auth.auth().signOut()
-         let authVC = self.storyboard?.instantiateViewController(withIdentifier: "AuthVC") as? AuthVC
-         self.present(authVC!, animated: true, completion: nil)
-         } catch {
-         print(error)
-         }
-         
-         */
+      
         
+        //login error
         setupFilterView()
         setupSegmentControl()
         
         pendingTableView.delegate = self
         pendingTableView.dataSource = self
         pendingTableView.reloadData()
+        
+        
         
         settledTableView.isHidden = true
         pendingTableView.isHidden = false
@@ -107,6 +101,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
         self.transactionStatusLbl.isHidden = true
         
+        
+        
+        
     }
 
     
@@ -116,11 +113,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.segmentControl.layer.borderWidth = 1
         self.segmentControl.layer.masksToBounds = true
         let font = UIFont(name: "AvenirNext-Regular", size: 15)
-        segmentControl.setTitleTextAttributes([NSAttributedStringKey.font: font],
+        segmentControl.setTitleTextAttributes([NSAttributedStringKey.font: font as Any],
                                               for: .normal)
     }
     
+    
     func setupFilterView () {
+        //error firebase error login and sign up
         filterView.isHidden = true
         filterView.layer.borderWidth = 1.0
         filterView.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
@@ -135,9 +134,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         filterView.layer.shadowOffset = CGSize.zero
         filterView.layer.shadowColor = UIColor.black.cgColor
     }
+ 
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        var touch: UITouch? = touches.first
+        let touch: UITouch? = touches.first
         if touch?.view != filterView{
             filterView.isHidden = true
         }
@@ -196,11 +197,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if Auth.auth().currentUser != nil {
         DataService.instance.getOwed(userKey: (Auth.auth().currentUser?.uid)!) { (owed) in
             self.owed = owed
-            self.totalOwedLabel.text = String(format: "$%.2f", owed)
+            self.totalOwedLabel.text = String(format: "₹%.2f", owed)
         }
         DataService.instance.getOwing(userKey: (Auth.auth().currentUser?.uid)!) { (owing) in
             self.owing = owing
-            self.totalOwingLabel.text = String(format: "$%.2f", owing)
+            self.totalOwingLabel.text = String(format: "₹%.2f", owing)
         }
             getPendingTransactions()
             
@@ -220,7 +221,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             self.pendingTableView.reloadData()
             self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
         }
-        
+        //firebase error
         self.pendingTableView.reloadData()
         
     }
@@ -369,8 +370,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         print(transactionType)
         var datesArrayString = [String]()
         var datesArray = [Date]()
-        var amountArray = [Float]()
-        var dateFormatter = DateFormatter()
+        _ = [Float]()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd, yyyy"
         if filterType == "Newest" && transactionType == .pending {
             for transaction in transactionsArray {

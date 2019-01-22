@@ -1,12 +1,13 @@
 //
 //  InsetTextField.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2017-11-25.
-//  Copyright © 2017 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import UIKit
+
 @IBDesignable
 class InsetTextField: UITextField {
     private var padding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)

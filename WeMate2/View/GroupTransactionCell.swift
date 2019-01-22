@@ -1,9 +1,9 @@
 //
 //  GroupTransactionCell.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2017-12-05.
-//  Copyright © 2017 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import UIKit
@@ -25,7 +25,7 @@ class GroupTransactionCell: UITableViewCell {
     func configureCell(description: String, owing: Bool, date: String, amount: Float) {
         self.descriptionLbl.text = description
         self.dateLbl.text = date
-        self.amountLbl.text = String(format: "$%.2f", amount)
+        self.amountLbl.text = String(format: "₹%.2f", amount)
         if owing {
             self.owingLabel.text = "YOU OWE:"
             self.owingView.backgroundColor = #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)

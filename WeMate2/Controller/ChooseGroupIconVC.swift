@@ -1,9 +1,9 @@
 //
 //  ChooseGroupIconVC.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2018-01-24.
-//  Copyright © 2018 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import UIKit
@@ -58,7 +58,7 @@ extension ChooseGroupIconVC: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let createGroupVC = storyboard?.instantiateViewController(withIdentifier: "createGroupVC") as? CreateGroupVC else {return}
+        guard (storyboard?.instantiateViewController(withIdentifier: "createGroupVC") as? CreateGroupVC) != nil else {return}
         if delegate != nil {
             delegate?.iconChanged(icon: imageArray[indexPath.row])
             dismiss(animated: true, completion: nil)

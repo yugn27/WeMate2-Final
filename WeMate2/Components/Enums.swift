@@ -1,9 +1,9 @@
 //
 //  Enums.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2018-07-27.
-//  Copyright © 2018 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import Foundation
@@ -13,4 +13,5 @@ public enum ViewStatus {
     case error
     case filled
     case empty
+    
 }

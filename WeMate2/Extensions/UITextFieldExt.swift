@@ -1,9 +1,9 @@
 //
 //  UITextFieldExt.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2018-06-20.
-//  Copyright © 2018 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import UIKit

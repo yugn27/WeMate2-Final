@@ -1,9 +1,9 @@
 //
 //  MemberBalanceCell.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2018-01-28.
-//  Copyright © 2018 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import UIKit
@@ -24,7 +24,7 @@ class MemberBalanceCell: UICollectionViewCell {
             self.owingLabel.text = "OWES YOU"
             self.owingView.backgroundColor = #colorLiteral(red: 0.2784313725, green: 0.6941176471, blue: 0.3137254902, alpha: 1)
         }
-        self.amountLabel.text = String(format: "$%.2f", amount)
+        self.amountLabel.text = String(format: "₹%.2f", amount)
         self.userNameLabel.text = name
     }
 }

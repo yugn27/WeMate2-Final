@@ -1,9 +1,9 @@
 //
 //  GroupTransactionsVC.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2017-12-04.
-//  Copyright © 2017 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import UIKit
@@ -37,10 +37,65 @@ class GroupTransactionsVC: UIViewController {
         super.viewDidLoad()
         memberCollectionView.delegate = self
         memberCollectionView.dataSource = self
+        
+        
+        /*
+        
+        //test faild
+        groupNameLbl.text = group?.groupTitle
+        DataService.instance.getEmails(forGroupKey: (self.group?.key)!) { (returnedEmails) in
+            self.groupMembers = returnedEmails
+            self.memberCount = self.groupMembers.count
+        }
+        
+        DataService.instance.getNames(forGroupKey: (group?.key)!) { (returnedNames) in
+            self.memberNames = returnedNames
+            for i in 0..<self.memberNames.count {
+                if self.memberNames[i] != "You" {
+                    //firebase error sign up
+                    self.members.append(GroupMember(name: self.memberNames[i], email: self.groupMembers[i], amount: 0.0, owing: true))
+                }
+            }
+            self.memberCollectionView.reloadData()
+            
+            
+        }
+        DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
+            self.groupTransactions = returnedTransactions
+            for transaction in self.groupTransactions {
+                if transaction.payer == Auth.auth().currentUser?.email {
+                    for payee in transaction.payees {
+                        for i in 0..<self.members.count {
+                            if self.members[i].email == payee {
+                                self.members[i].amount += transaction.amount / Float(transaction.payees.count + 1)
+                                if self.members[i].amount > 0 {
+                                    self.members[i].owing = false
+                                }
+                            }
+                        }
+                    }
+                } else if transaction.payees.contains((Auth.auth().currentUser?.email)!){
+                    for i in 0..<self.members.count {
+                        if self.members[i].email == transaction.payer {
+                            self.members[i].amount -= transaction.amount / Float(transaction.payees.count + 1)
+                            if self.members[i].amount < 0 {
+                                self.members[i].owing = true
+                            }
+                            self.members[i].amount = abs(self.members[i].amount)
+                        }
+                    }
+                }
+            }
+            self.memberCollectionView.reloadData()
+        }
+ 
+         */
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         
         groupNameLbl.text = group?.groupTitle
         DataService.instance.getEmails(forGroupKey: (self.group?.key)!) { (returnedEmails) in
@@ -51,10 +106,14 @@ class GroupTransactionsVC: UIViewController {
             self.memberNames = returnedNames
             for i in 0..<self.memberNames.count {
                 if self.memberNames[i] != "You" {
+                    
+                    // firebase
                     self.members.append(GroupMember(name: self.memberNames[i], email: self.groupMembers[i], amount: 0.0, owing: true))
                 }
             }
             self.memberCollectionView.reloadData()
+ 
+
         }
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
             self.groupTransactions = returnedTransactions

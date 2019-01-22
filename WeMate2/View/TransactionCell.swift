@@ -1,9 +1,9 @@
 //
 //  TransactionCell.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2017-12-04.
-//  Copyright © 2017 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import UIKit
@@ -45,19 +45,19 @@ class TransactionCell: UITableViewCell {
         if type == .pending {
             self.descriptionLabel.text = description
             self.dateLbl.text = date
-            self.amountLbl.text = String(format: "$%.2f", amount)
+            self.amountLbl.text = String(format: "₹%.2f", amount)
             self.groupNameLbl.text = groupName
             if owing {
-                self.owingLbl.text = "YOU OWE"
+                self.owingLbl.text = "GIVE"
                 self.owingView.backgroundColor = #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)
             } else {
-                self.owingLbl.text = "YOU ARE OWED"
+                self.owingLbl.text = "TAKE"
                 self.owingView.backgroundColor = #colorLiteral(red: 0.2784313725, green: 0.6941176471, blue: 0.3137254902, alpha: 1)
             }
         } else if type == .settled{
             self.settledDescriptionLbl.text  = description
             self.settledDateLbl.text = date
-            self.settledAmountLbl.text = String(format: "$%.2f", amount)
+            self.settledAmountLbl.text = String(format: "₹%.2f", amount)
             self.settledGroupLbl.text = groupName
             if owing {
                 self.settledOwinglbl.text = "YOU OWE"

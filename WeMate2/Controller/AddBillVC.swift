@@ -1,9 +1,9 @@
 //
 //  AddBillVC.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2017-12-03.
-//  Copyright © 2017 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import UIKit
@@ -20,7 +20,7 @@ class AddBillVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate 
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var nextBtn: UIButton!
-    
+    //test
     var groupArray = [String]()
     var payer: String = ""
     var payerArray = [String]()
@@ -120,7 +120,7 @@ class AddBillVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate 
     }
     
     
-    
+    //new test
     
     @objc func doneCyclePressed () {
         let every = cycleOptions[0][cyclePickerView.selectedRow(inComponent: 0)]
@@ -269,7 +269,7 @@ class AddBillVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate 
         
         guard let groupDetailsVC = storyboard?.instantiateViewController(withIdentifier: "GroupDetailsVC") as? GroupDetailsVC else {return}
         
-        let amountFieldWithoutCurrency = amountField.text?.replacingOccurrences(of: "$", with: "")
+        let amountFieldWithoutCurrency = amountField.text?.replacingOccurrences(of: "₹", with: "")
         
         if billDescriptionField.text != "" && amountField.text != "" && dateField.text != "" {
             groupDetailsVC.initData(billDescription: billDescriptionField.text!, amount: Float(amountFieldWithoutCurrency!.replacingOccurrences(of: ",", with: ""))!, date: date!)

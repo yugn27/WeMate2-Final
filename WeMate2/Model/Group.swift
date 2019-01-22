@@ -1,11 +1,10 @@
 //
 //  Group.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2017-12-04.
-//  Copyright © 2017 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
-
 import Foundation
 
 class Group {
@@ -29,7 +28,7 @@ class Group {
         return _members
     }
     
-    
+    //test string new
     init(title: String, key: String, members: [String], memberCount: Int) {
         self._groupTitle = title
         self._key = key

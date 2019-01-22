@@ -1,9 +1,9 @@
 //
 //  CameraVC.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2017-11-28.
-//  Copyright © 2017 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import UIKit
@@ -30,12 +30,12 @@ class CameraVC: UIViewController {
             tesseract.pageSegmentationMode = .auto
             tesseract.image = image.g8_blackAndWhite()
             tesseract.recognize()
-            var fullText = tesseract.recognizedText.lowercased()
-            var fullTextArray = fullText.lowercased().components(separatedBy: " ")
+            var fullText = tesseract.recognizedText?.lowercased()
+            var fullTextArray = fullText?.lowercased().components(separatedBy: " ")
             var totalFound = false
             var possibleAmountString: String
             var possibleAmountArray = [Float]()
-            for word in fullTextArray {
+            for word in fullTextArray! {
                     possibleAmountString = word.trimmingCharacters(in: CharacterSet(charactersIn: "01234567890.").inverted)
                     let pattern = "\\d+\\.\\d{2}"
                     let amountRegex = try! NSRegularExpression(pattern: pattern, options: [])
@@ -57,7 +57,7 @@ class CameraVC: UIViewController {
             }
             let types: NSTextCheckingResult.CheckingType = [.date ]
             let detector = try? NSDataDetector(types: types.rawValue)
-            let result = detector?.firstMatch(in: fullText, range: NSMakeRange(0,fullText.utf16.count))
+            let result = detector?.firstMatch(in: fullText!, range: NSMakeRange(0,(fullText?.utf16.count)!))
             if result?.resultType == .date && (result?.date)! <= date {
                 date = (result?.date)!
             }

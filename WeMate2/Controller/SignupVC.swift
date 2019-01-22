@@ -1,9 +1,9 @@
 //
 //  SignupVC.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2017-12-08.
-//  Copyright © 2017 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import UIKit
@@ -27,8 +27,8 @@ class SignupVC: UIViewController {
         let gradientView = GradientView()
         view.addSubview(gradientView)
         gradientView <- [Edges()]
-        gradientView.topColor = UI.Colours.rosePink
-        gradientView.bottomColor = UI.Colours.peachyPink
+        gradientView.topColor = UI.Colours.grdOrange
+        gradientView.bottomColor = UI.Colours.grdOrange2
         
         setupTitle()
         setupLogo()
@@ -38,6 +38,8 @@ class SignupVC: UIViewController {
         setupLoginButton()
         setupSignupButton()
         setupBackButton()
+        // keyboard fix
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
     }
     
     func setupBackButton() {
@@ -54,7 +56,7 @@ class SignupVC: UIViewController {
     
     func setupTitle() {
         view.addSubview(titleLabel)
-        titleLabel.text = "Welcome to"
+        titleLabel.text = "WeMate SignUp"
         titleLabel.font = UI.Font.medium(25)
         titleLabel.textColor = UI.Colours.white
         titleLabel.numberOfLines = 0
@@ -64,7 +66,7 @@ class SignupVC: UIViewController {
     
     func setupLogo() {
         view.addSubview(logoImageView)
-        logoImageView.image = UIImage(named: "logo")
+        //logoImageView.image = UIImage(named: "WeMate")
         logoImageView <- [
             Width(100),
             Top(10).to(titleLabel),
@@ -74,14 +76,14 @@ class SignupVC: UIViewController {
     
     func setupNameTextField() {
         view.addSubview(nameTextField)
-        let data = TextFieldEntryData(title: "Name", placeholder: "John")
+        let data = TextFieldEntryData(title: "Name", placeholder: "Enter your name")
         nameTextField.configure(data)
         nameTextField.easy.layout(Top(100).to(titleLabel), Left(30), Right(30))
     }
     
     func setupEmailTextField() {
         view.addSubview(emailTextField)
-        let data = TextFieldEntryData(title: "Email address", placeholder: "hello@divide.com")
+        let data = TextFieldEntryData(title: "Email address", placeholder: "user@mail.com")
         emailTextField.configure(data)
         emailTextField.easy.layout(Top(16).to(nameTextField), Left(30), Right(30))
     }
@@ -95,8 +97,14 @@ class SignupVC: UIViewController {
     
     func setupSignupButton() {
         view.addSubview(signupButton)
-        signupButton.backgroundColor = UI.Colours.pink
+        signupButton.backgroundColor = UI.Colours.grdOrange
+        
+        
+        //  loginButton.setTitleColor(UI.Colours.rosePink, for: .normal)
+        
         signupButton.titleLabel?.textColor = UI.Colours.white
+        
+    
         signupButton.titleLabel?.font = UI.Font.demiBold(18)
         signupButton.setTitle("SIGN UP", for: .normal)
         signupButton.cornerRadius = 25
@@ -128,14 +136,18 @@ class SignupVC: UIViewController {
     
     @objc func signUpPressed(_ sender: Any) {
         if nameTextField.textField.text != "" && emailTextField.textField.text != "" && passwordTextField.textField.text != "" {
-        let homeViewController = HomeVC()
+       
         if emailTextField.textField.text != nil && passwordTextField.textField.text != nil && nameTextField.textField.text != nil {
         AuthService.instance.registerUser(withEmail: self.emailTextField.textField.text!, andPassword: self.passwordTextField.textField.text!, name: nameTextField.textField.text!, userCreationComplete: { (success, registrationError) in
             if success {
-                AuthService.instance.loginUser(withEmail: self.emailTextField.textField.text!, andPassword: self.passwordTextField.textField.text!, loginComplete: { (success, nil) in
-                    self.presentDetail(homeViewController)
-                    UIApplication.shared.statusBarStyle = .lightContent
-                })
+                
+                
+                
+                self.dismissDetail()
+                
+                
+                
+              
             } else {
                 if let error = registrationError?.localizedDescription  {
                 print(error)

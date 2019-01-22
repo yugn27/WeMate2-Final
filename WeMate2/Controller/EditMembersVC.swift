@@ -1,9 +1,9 @@
 //
 //  AddMemberVC.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2017-12-09.
-//  Copyright © 2017 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import UIKit
@@ -107,7 +107,7 @@ class EditMembersVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         dismiss(animated: true, completion: nil)
     }
     @IBAction func donePressed(_ sender: Any) {
-        var addedMembers = chosenUsers.filter { !self.currentUsers.contains($0) }
+        let addedMembers = chosenUsers.filter { !self.currentUsers.contains($0) }
         var memberIds = [String]()
         DataService.instance.getIds(forEmails: addedMembers) { (ids) in
             memberIds = ids

@@ -1,11 +1,10 @@
 //
 //  AuthService.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2017-11-25.
-//  Copyright © 2017 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
-
 import Foundation
 import Firebase
 
@@ -19,7 +18,7 @@ class AuthService {
                 return
             }
             let userData = ["email": authResult.user.email, "owing": "0.00", "owed": "0.00", "name": name]
-            DataService.instance.createDBUser(uid: authResult.user.uid, userData: userData)
+            DataService.instance.createDBUser(uid: authResult.user.uid, userData: userData as Dictionary<String, Any>)
             userCreationComplete(true,nil)
         }
     }

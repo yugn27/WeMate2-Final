@@ -1,9 +1,9 @@
 //
 //  CreateGroupVC.swift
-//  divide
+//  WeMate
 //
-//  Created by Adil Jiwani on 2017-11-27.
-//  Copyright © 2017 Adil Jiwani. All rights reserved.
+//  Created by Yash Nayak on 09/01/19.
+//  Copyright © 2019 Yash Nayak. All rights reserved.
 //
 
 import UIKit
@@ -54,7 +54,7 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
-        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        _ = tapGestureRecognizer.view as! UIImageView
         guard let chooseGroupIconVC = storyboard?.instantiateViewController(withIdentifier: "chooseGroupIconVC") as? ChooseGroupIconVC else {return}
         chooseGroupIconVC.delegate = self
         present(chooseGroupIconVC, animated: true, completion: nil)
