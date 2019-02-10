@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5CB129665FBE6C41D774C2C5 /* Pods_WeMate2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 828394406D412581C1326368 /* Pods_WeMate2.framework */; };
+		FD0AAF652202C8FC00E79E45 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD0AAF642202C8FC00E79E45 /* GoogleService-Info.plist */; };
 		FD84635A21EA505B007E883D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84635921EA505B007E883D /* AppDelegate.swift */; };
 		FD84635C21EA505B007E883D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84635B21EA505B007E883D /* ViewController.swift */; };
 		FD84635F21EA505B007E883D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD84635D21EA505B007E883D /* Main.storyboard */; };
@@ -55,7 +56,6 @@
 		FD8463D221EA508B007E883D /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84639B21EA508A007E883D /* UIViewExt.swift */; };
 		FD8463D321EA508B007E883D /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84639C21EA508A007E883D /* UIViewControllerExt.swift */; };
 		FD8463D421EA508B007E883D /* UITextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD84639D21EA508A007E883D /* UITextFieldExt.swift */; };
-		FDF171AD21F30C5200AA7070 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FDF171AC21F30C5200AA7070 /* GoogleService-Info.plist */; };
 		FDF171AF21F3139500AA7070 /* TestloginfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF171AE21F3139500AA7070 /* TestloginfViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +63,7 @@
 		67BCBEE9F8E4C82A0DA4B458 /* Pods-WeMate2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMate2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeMate2/Pods-WeMate2.debug.xcconfig"; sourceTree = "<group>"; };
 		828394406D412581C1326368 /* Pods_WeMate2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeMate2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83BE371B5F4175C74D10CF6C /* Pods-WeMate2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeMate2.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeMate2/Pods-WeMate2.release.xcconfig"; sourceTree = "<group>"; };
+		FD0AAF642202C8FC00E79E45 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FD84635621EA505B007E883D /* WeMate2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeMate2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD84635921EA505B007E883D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD84635B21EA505B007E883D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,7 +113,6 @@
 		FD84639B21EA508A007E883D /* UIViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		FD84639C21EA508A007E883D /* UIViewControllerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		FD84639D21EA508A007E883D /* UITextFieldExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExt.swift; sourceTree = "<group>"; };
-		FDF171AC21F30C5200AA7070 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FDF171AE21F3139500AA7070 /* TestloginfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestloginfViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,8 +178,8 @@
 				FD84635D21EA505B007E883D /* Main.storyboard */,
 				FD84636021EA505D007E883D /* Assets.xcassets */,
 				FD84636221EA505D007E883D /* LaunchScreen.storyboard */,
+				FD0AAF642202C8FC00E79E45 /* GoogleService-Info.plist */,
 				FD84636521EA505D007E883D /* Info.plist */,
-				FDF171AC21F30C5200AA7070 /* GoogleService-Info.plist */,
 				FDF171AE21F3139500AA7070 /* TestloginfViewController.swift */,
 			);
 			path = WeMate2;
@@ -337,7 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD84636421EA505D007E883D /* LaunchScreen.storyboard in Resources */,
-				FDF171AD21F30C5200AA7070 /* GoogleService-Info.plist in Resources */,
+				FD0AAF652202C8FC00E79E45 /* GoogleService-Info.plist in Resources */,
 				FD84636121EA505D007E883D /* Assets.xcassets in Resources */,
 				FD84635F21EA505B007E883D /* Main.storyboard in Resources */,
 			);

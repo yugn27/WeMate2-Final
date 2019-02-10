@@ -184,6 +184,8 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         if groupNameField.text == "" {
             self.groupsTableView.isHidden = true
             groupArray = []
+            //extra
+            //groupsTableView.reloadData()
         } else {
             self.groupsTableView.isHidden = false
             self.payeeTableView.isHidden = true

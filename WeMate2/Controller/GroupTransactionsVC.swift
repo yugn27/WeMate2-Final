@@ -11,7 +11,7 @@ import Firebase
 
 class GroupTransactionsVC: UIViewController {
     fileprivate let sectionInsets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 20.0, right: 20.0)
-
+    
     @IBOutlet weak var memberCollectionView: UICollectionView!
     @IBOutlet weak var groupNameLbl: UILabel!
     @IBOutlet weak var membersTextView: UITextView!
@@ -39,81 +39,45 @@ class GroupTransactionsVC: UIViewController {
         memberCollectionView.dataSource = self
         
         
-        /*
-        
-        //test faild
-        groupNameLbl.text = group?.groupTitle
-        DataService.instance.getEmails(forGroupKey: (self.group?.key)!) { (returnedEmails) in
-            self.groupMembers = returnedEmails
-            self.memberCount = self.groupMembers.count
-        }
-        
-        DataService.instance.getNames(forGroupKey: (group?.key)!) { (returnedNames) in
-            self.memberNames = returnedNames
-            for i in 0..<self.memberNames.count {
-                if self.memberNames[i] != "You" {
-                    //firebase error sign up
-                    self.members.append(GroupMember(name: self.memberNames[i], email: self.groupMembers[i], amount: 0.0, owing: true))
-                }
-            }
-            self.memberCollectionView.reloadData()
-            
-            
-        }
-        DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
-            self.groupTransactions = returnedTransactions
-            for transaction in self.groupTransactions {
-                if transaction.payer == Auth.auth().currentUser?.email {
-                    for payee in transaction.payees {
-                        for i in 0..<self.members.count {
-                            if self.members[i].email == payee {
-                                self.members[i].amount += transaction.amount / Float(transaction.payees.count + 1)
-                                if self.members[i].amount > 0 {
-                                    self.members[i].owing = false
-                                }
-                            }
-                        }
-                    }
-                } else if transaction.payees.contains((Auth.auth().currentUser?.email)!){
-                    for i in 0..<self.members.count {
-                        if self.members[i].email == transaction.payer {
-                            self.members[i].amount -= transaction.amount / Float(transaction.payees.count + 1)
-                            if self.members[i].amount < 0 {
-                                self.members[i].owing = true
-                            }
-                            self.members[i].amount = abs(self.members[i].amount)
-                        }
-                    }
-                }
-            }
-            self.memberCollectionView.reloadData()
-        }
- 
-         */
-        
     }
+    
+    
+   
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
         groupNameLbl.text = group?.groupTitle
         DataService.instance.getEmails(forGroupKey: (self.group?.key)!) { (returnedEmails) in
             self.groupMembers = returnedEmails
             self.memberCount = self.groupMembers.count
         }
+        
         DataService.instance.getNames(forGroupKey: (group?.key)!) { (returnedNames) in
             self.memberNames = returnedNames
+            var temp3 = ""
             for i in 0..<self.memberNames.count {
                 if self.memberNames[i] != "You" {
+                    //firebase error sign up
                     
-                    // firebase
-                    self.members.append(GroupMember(name: self.memberNames[i], email: self.groupMembers[i], amount: 0.0, owing: true))
+                    let current = self.memberNames[i]
+                    
+                    //settle crash
+                    //main crash
+                    
+                    if current != temp3{
+                        self.members.append(GroupMember(name: self.memberNames[i], email: self.groupMembers[i], amount: 0.0, owing: true))
+                    }
+                    
+                    if current == temp3{
+                        break
+                    }
+                    
+                    temp3 = self.memberNames[i]
+                    
                 }
             }
             self.memberCollectionView.reloadData()
- 
-
         }
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
             self.groupTransactions = returnedTransactions
@@ -141,11 +105,13 @@ class GroupTransactionsVC: UIViewController {
                     }
                 }
             }
-        self.memberCollectionView.reloadData()
+            self.memberCollectionView.reloadData()
         }
         
+        
+        
     }
-
+    
     @IBAction func backPressed(_ sender: Any) {
         dismissDetail()
     }
@@ -158,17 +124,17 @@ class GroupTransactionsVC: UIViewController {
     }
     
     @IBAction func removePressed(_ sender: Any) {
-            if memberCount > 2 {
-                guard let removeMembersVC = self.storyboard?.instantiateViewController(withIdentifier: "RemoveMembersVC") as? RemoveMembersVC else {return}
-                removeMembersVC.initData(chosenGroup: self.group!)
-                removeMembersVC.modalPresentationStyle = .custom
-                self.present(removeMembersVC, animated: true, completion: nil)
-            } else {
-                let groupName = self.group?.groupTitle
-                let alert = UIAlertController(title: "Remove members from \"\(groupName!)\"", message: "You cannot remove members from this group. There are only 2 people in this group.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
+        if memberCount > 2 {
+            guard let removeMembersVC = self.storyboard?.instantiateViewController(withIdentifier: "RemoveMembersVC") as? RemoveMembersVC else {return}
+            removeMembersVC.initData(chosenGroup: self.group!)
+            removeMembersVC.modalPresentationStyle = .custom
+            self.present(removeMembersVC, animated: true, completion: nil)
+        } else {
+            let groupName = self.group?.groupTitle
+            let alert = UIAlertController(title: "Remove members from \"\(groupName!)\"", message: "You cannot remove members from this group. There are only 2 people in this group.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func deletePressed(_ sender: Any) {
@@ -207,10 +173,17 @@ extension GroupTransactionsVC: UICollectionViewDelegate, UICollectionViewDataSou
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return members.count
+        print("count\(members.count)")
     }
+    
+    
+    //error firebase
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "memberBalanceCell", for: indexPath) as? MemberBalanceCell else {return UICollectionViewCell()}
         cell.configureCell(name: members[indexPath.row].name, amount: members[indexPath.row].amount, owing: members[indexPath.row].owing)
+       
+        print(members[indexPath.row].amount)
+        
         cell.layer.cornerRadius = 30
         return cell
     }

@@ -24,7 +24,8 @@ class MemberBalanceCell: UICollectionViewCell {
             self.owingLabel.text = "OWES YOU"
             self.owingView.backgroundColor = #colorLiteral(red: 0.2784313725, green: 0.6941176471, blue: 0.3137254902, alpha: 1)
         }
-        self.amountLabel.text = String(format: "₹%.2f", amount)
+        
+        self.amountLabel.text = String(format: "₹ %.2f", amount)
         self.userNameLabel.text = name
     }
 }

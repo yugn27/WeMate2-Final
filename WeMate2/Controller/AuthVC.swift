@@ -138,7 +138,7 @@ class AuthVC: UIViewController {
 
     @objc func loginPressed(_ sender: Any) {
       
-        let tabBar = storyboard?.instantiateViewController(withIdentifier: "TestloginfViewController")
+        _ = storyboard?.instantiateViewController(withIdentifier: "TestloginfViewController")
        
         if emailTextField.textField.text != "" && passwordTextField.textField.text != "" {
             AuthService.instance.loginUser(withEmail: emailTextField.textField.text!, andPassword: passwordTextField.textField.text!, loginComplete: { (success, loginError) in
